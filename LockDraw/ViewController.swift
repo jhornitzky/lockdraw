@@ -56,6 +56,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         // Dispose of any resources that can be recreated.
     }
     
+    
     //image area
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return self.mainImageView
@@ -87,7 +88,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         self.controlView.isHidden = true
         self.lockText.text = "Swipe left to unlock"
         
-        switch UIDevice.current.orientation{
+        switch UIApplication.shared.statusBarOrientation{
             case .portrait:
                 AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait)
             case .portraitUpsideDown:
@@ -96,8 +97,8 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
                 AppUtility.lockOrientation(UIInterfaceOrientationMask.landscapeLeft)
             case .landscapeRight:
                 AppUtility.lockOrientation(UIInterfaceOrientationMask.landscapeRight)
-            default:
-                AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
+            case .unknown:
+                AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait)
         }
         
         isLocked = true
