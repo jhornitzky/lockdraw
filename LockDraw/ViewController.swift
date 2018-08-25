@@ -86,6 +86,20 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         self.mainScrollView.isUserInteractionEnabled = false
         self.controlView.isHidden = true
         self.lockText.text = "Swipe left to unlock"
+        
+        switch UIDevice.current.orientation{
+            case .portrait:
+                AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait)
+            case .portraitUpsideDown:
+                AppUtility.lockOrientation(UIInterfaceOrientationMask.portraitUpsideDown)
+            case .landscapeLeft:
+                AppUtility.lockOrientation(UIInterfaceOrientationMask.landscapeLeft)
+            case .landscapeRight:
+                AppUtility.lockOrientation(UIInterfaceOrientationMask.landscapeRight)
+            default:
+                AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
+        }
+        
         isLocked = true
     }
     
@@ -93,6 +107,8 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         self.mainScrollView.isUserInteractionEnabled = true
         self.controlView.isHidden = false
         self.lockText.text = "Swipe right to lock"
+        AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
+        
         isLocked = false
     }
     
