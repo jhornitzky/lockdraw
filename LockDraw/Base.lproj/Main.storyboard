@@ -28,6 +28,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                     </imageView>
                                 </subviews>
+                                <color key="backgroundColor" red="1" green="0.98039215686274506" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="9G9-nP-YGX" firstAttribute="centerX" secondItem="Rtk-Dg-SaK" secondAttribute="centerX" id="1kF-k0-bfg"/>
                                     <constraint firstAttribute="trailing" secondItem="9G9-nP-YGX" secondAttribute="trailing" id="3XE-db-BOa"/>
@@ -40,6 +41,14 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="3Rw-q1-SBh"/>
                                 </connections>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Hi-Il-8UT">
+                                <rect key="frame" x="138" y="619" width="99" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Change Image"/>
+                                <connections>
+                                    <action selector="changeImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="03Z-ed-zU8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.64313725489999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>

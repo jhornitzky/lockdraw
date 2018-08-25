@@ -8,14 +8,16 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIScrollViewDelegate {
-    
+class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var mainImageView: UIImageView!
     
+    let imagePicker = UIImagePickerController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        imagePicker.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,5 +29,24 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         return self.mainImageView
     }
 
+    @IBAction func changeImage(_ sender: Any) {
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            self.mainImageView.contentMode = .scaleAspectFit
+            self.mainImageView.image = pickedImage
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
