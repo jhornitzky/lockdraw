@@ -1,14 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="LockDraw" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +20,46 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="Rtk-Dg-SaK">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="download.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="9G9-nP-YGX">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="9G9-nP-YGX" firstAttribute="centerX" secondItem="Rtk-Dg-SaK" secondAttribute="centerX" id="1kF-k0-bfg"/>
+                                    <constraint firstAttribute="trailing" secondItem="9G9-nP-YGX" secondAttribute="trailing" id="3XE-db-BOa"/>
+                                    <constraint firstItem="9G9-nP-YGX" firstAttribute="centerY" secondItem="Rtk-Dg-SaK" secondAttribute="centerY" id="E40-SP-Mq4"/>
+                                    <constraint firstItem="9G9-nP-YGX" firstAttribute="top" secondItem="Rtk-Dg-SaK" secondAttribute="top" id="Vmb-4J-u97"/>
+                                    <constraint firstItem="9G9-nP-YGX" firstAttribute="leading" secondItem="Rtk-Dg-SaK" secondAttribute="leading" id="lH6-aY-dXi"/>
+                                    <constraint firstAttribute="bottom" secondItem="9G9-nP-YGX" secondAttribute="bottom" id="vlL-LJ-a97"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="3Rw-q1-SBh"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.64313725489999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Rtk-Dg-SaK" secondAttribute="trailing" id="dlg-Wd-Y1Q"/>
+                            <constraint firstItem="Rtk-Dg-SaK" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="q6k-UM-FTr"/>
+                            <constraint firstItem="Rtk-Dg-SaK" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="rK8-Cc-qrE"/>
+                            <constraint firstItem="Rtk-Dg-SaK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wLF-TS-izJ"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mainImageView" destination="9G9-nP-YGX" id="jne-Qg-Gmm"/>
+                        <outlet property="mainScrollView" destination="Rtk-Dg-SaK" id="hon-Pj-YyP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="download.jpeg" width="225" height="225"/>
+    </resources>
 </document>
