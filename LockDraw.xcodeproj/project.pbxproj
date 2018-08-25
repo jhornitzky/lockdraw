@@ -13,7 +13,7 @@
 		14807CE71F138C8A00AC4298 /* LockDraw.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14807CE51F138C8A00AC4298 /* LockDraw.xcdatamodeld */; };
 		14807CE91F138C8A00AC4298 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14807CE81F138C8A00AC4298 /* Assets.xcassets */; };
 		14807CEC1F138C8A00AC4298 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14807CEA1F138C8A00AC4298 /* LaunchScreen.storyboard */; };
-		149533E02130E4A7006874D0 /* download.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 149533DF2130E4A7006874D0 /* download.jpeg */; };
+		149533E421318849006874D0 /* download.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 149533E321318849006874D0 /* download.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,7 @@
 		14807CE81F138C8A00AC4298 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14807CEB1F138C8A00AC4298 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14807CED1F138C8A00AC4298 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		149533DF2130E4A7006874D0 /* download.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = download.jpeg; sourceTree = "<group>"; };
+		149533E321318849006874D0 /* download.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = download.jpeg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +61,8 @@
 				14807CDE1F138C8A00AC4298 /* AppDelegate.swift */,
 				14807CE01F138C8A00AC4298 /* ViewController.swift */,
 				14807CE21F138C8A00AC4298 /* Main.storyboard */,
+				149533E321318849006874D0 /* download.jpeg */,
 				14807CE81F138C8A00AC4298 /* Assets.xcassets */,
-				149533DF2130E4A7006874D0 /* download.jpeg */,
 				14807CEA1F138C8A00AC4298 /* LaunchScreen.storyboard */,
 				14807CED1F138C8A00AC4298 /* Info.plist */,
 				14807CE51F138C8A00AC4298 /* LockDraw.xcdatamodeld */,
@@ -131,7 +131,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14807CEC1F138C8A00AC4298 /* LaunchScreen.storyboard in Resources */,
-				149533E02130E4A7006874D0 /* download.jpeg in Resources */,
+				149533E421318849006874D0 /* download.jpeg in Resources */,
 				14807CE91F138C8A00AC4298 /* Assets.xcassets in Resources */,
 				14807CE41F138C8A00AC4298 /* Main.storyboard in Resources */,
 			);
