@@ -8,25 +8,24 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SlideButtonDelegate {
     
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var mainImageView: UIImageView!
+    @IBOutlet weak var lockButton: MMSlidingButton!
     
     let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         imagePicker.delegate = self
+        self.lockButton.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return self.mainImageView
     }
 
     @IBAction func changeImage(_ sender: Any) {
@@ -36,6 +35,14 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         present(imagePicker, animated: true, completion: nil)
     }
     
+    
+    //UIScrollView delegate
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return self.mainImageView
+    }
+    
+    
+    //UIImagePicker delegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             self.mainImageView.contentMode = .scaleAspectFit
@@ -48,5 +55,16 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
+    
+    
+    //Slide Button delegate
+    @IBAction func resetClicked(sender: AnyObject) {
+        self.lockButton.reset()
+    }
+    
+    func buttonStatus(status: String, sender: MMSlidingButton) {
+        print(status)
+    }
+    
 }
 

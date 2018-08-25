@@ -49,6 +49,30 @@
                                     <action selector="changeImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="03Z-ed-zU8"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Cq-kS-bUy" customClass="MMSlidingButton" customModule="LockDraw" customModuleProvider="target">
+                                <rect key="frame" x="16" y="28" width="342" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.45098039220000002" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
+                                        <color key="value" red="0.20784313730000001" green="0.57647058819999997" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="buttonText" value="UNLOCK"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="buttonUnlockedText" value="UNLOCKED"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="dragPointColor">
+                                        <color key="value" red="0.0" green="0.64313725489999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="buttonTextColor">
+                                        <color key="value" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="dragPointTextColor">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="buttonUnlockedColor">
+                                        <color key="value" red="1" green="0.45098039220000002" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.64313725489999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -59,6 +83,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="lockButton" destination="8Cq-kS-bUy" id="MUc-3E-9CW"/>
                         <outlet property="mainImageView" destination="9G9-nP-YGX" id="jne-Qg-Gmm"/>
                         <outlet property="mainScrollView" destination="Rtk-Dg-SaK" id="hon-Pj-YyP"/>
                     </connections>
