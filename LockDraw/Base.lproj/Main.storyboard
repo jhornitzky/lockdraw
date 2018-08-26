@@ -25,10 +25,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Unlocked Status" translatesAutoresizingMaskIntoConstraints="NO" id="y1h-gh-Ybz">
-                                <rect key="frame" x="180" y="5" width="12" height="12"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" maximumZoomScale="10" translatesAutoresizingMaskIntoConstraints="NO" id="Rtk-Dg-SaK">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
@@ -48,6 +44,10 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="3Rw-q1-SBh"/>
                                 </connections>
                             </scrollView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Unlocked Status" translatesAutoresizingMaskIntoConstraints="NO" id="y1h-gh-Ybz">
+                                <rect key="frame" x="180" y="5" width="12" height="12"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4i4-vX-7ev">
                                 <rect key="frame" x="53" y="20" width="268" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
