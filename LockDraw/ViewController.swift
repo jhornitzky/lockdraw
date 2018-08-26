@@ -172,6 +172,9 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
             self.mainImageView.contentMode = .scaleAspectFit
             self.mainImageView.image = pickedImage
             
+            //show the scrollview
+            self.mainScrollView.isHidden = false
+            
             /*
             //resize and position image view in center of screen
             self.mainImageView.removeConstraints(self.mainImageView.constraints)
