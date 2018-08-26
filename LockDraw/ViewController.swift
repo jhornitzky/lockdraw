@@ -31,6 +31,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
     var isLocked = false
     var currentFilter = "Original"
     var pickedImage = UIImage()
+    var screenBrightness = CGFloat(0.0)
     
     override var prefersStatusBarHidden: Bool {
         return true
@@ -113,6 +114,8 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         self.lockText.text = "Slide left to unlock"
         self.lockStatusImage.image = UIImage(named: "Locked Status")
         
+        self.screenBrightness = UIScreen.main.brightness
+        
         self.mainScrollView.isUserInteractionEnabled = false
         
         switch UIApplication.shared.statusBarOrientation{
@@ -129,6 +132,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         }
         
         self.lockLeftArrow.isHidden = false
+        UIScreen.main.brightness = CGFloat(1.0)
         UIView.animate(withDuration: 0.5, animations: {
             self.controlView.alpha = 0.0
             self.lockLeftArrow.alpha = 1.0
@@ -151,6 +155,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         
         self.controlView.isHidden = false
         self.lockRightArrow.isHidden = false
+        UIScreen.main.brightness = self.screenBrightness
         UIView.animate(withDuration: 0.5, animations: {
             self.controlView.alpha = 1.0
             self.lockLeftArrow.alpha = 0.0
@@ -185,18 +190,18 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
     
     private func processFilter() {
         switch self.currentFilter {
-        case "Original":
-            self.mainImageView.image = self.pickedImage
-        case "Grayscale":
-            let ciImage = CIImage(image: self.pickedImage)!
-            let blackAndWhiteCiImage = ciImage.applyingFilter("CIColorControls", withInputParameters: ["inputSaturation": 0])
-            self.mainImageView.image = UIImage(ciImage: blackAndWhiteCiImage)
-        case "B&W Contrast":
-            let ciImage = CIImage(image: self.pickedImage)!
-            let blackAndWhiteCiImage = ciImage.applyingFilter("CIColorControls", withInputParameters: ["inputSaturation": 0, "inputContrast": 3])
-            self.mainImageView.image = UIImage(ciImage: blackAndWhiteCiImage)
-        default:
-            return //do nothing, which should never happen
+            case "Original":
+                self.mainImageView.image = self.pickedImage
+            case "Grayscale":
+                let ciImage = CIImage(image: self.pickedImage)!
+                let blackAndWhiteCiImage = ciImage.applyingFilter("CIColorControls", withInputParameters: ["inputSaturation": 0])
+                self.mainImageView.image = UIImage(ciImage: blackAndWhiteCiImage)
+            case "B&W Contrast":
+                let ciImage = CIImage(image: self.pickedImage)!
+                let blackAndWhiteCiImage = ciImage.applyingFilter("CIColorControls", withInputParameters: ["inputSaturation": 0, "inputContrast": 3])
+                self.mainImageView.image = UIImage(ciImage: blackAndWhiteCiImage)
+            default:
+                return //do nothing, which should never happen
         }
     }
     
