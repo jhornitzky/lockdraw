@@ -171,7 +171,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
     
     @IBAction func applyFilter(_ sender: Any) {
         let action = UIAlertController.actionSheetWithItems(
-            items: [("Original","Original"),("Black & White","Black & White")],
+            items: [("Original","Original"),("Grayscale","Grayscale"),("B&W Contrast","B&W Contrast")],
             currentSelection: self.currentFilter,
             action: { (value)  in
                 self.currentFilter = value
@@ -187,9 +187,13 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         switch self.currentFilter {
         case "Original":
             self.mainImageView.image = self.pickedImage
-        case "Black & White":
+        case "Grayscale":
             let ciImage = CIImage(image: self.pickedImage)!
-            let blackAndWhiteCiImage = ciImage.applyingFilter("CIColorControls", withInputParameters: ["inputSaturation": 0, "inputContrast": 5])
+            let blackAndWhiteCiImage = ciImage.applyingFilter("CIColorControls", withInputParameters: ["inputSaturation": 0])
+            self.mainImageView.image = UIImage(ciImage: blackAndWhiteCiImage)
+        case "B&W Contrast":
+            let ciImage = CIImage(image: self.pickedImage)!
+            let blackAndWhiteCiImage = ciImage.applyingFilter("CIColorControls", withInputParameters: ["inputSaturation": 0, "inputContrast": 3])
             self.mainImageView.image = UIImage(ciImage: blackAndWhiteCiImage)
         default:
             return //do nothing, which should never happen
