@@ -18,6 +18,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
     @IBOutlet weak var lockText: UILabel!
     @IBOutlet weak var lockLeftArrow: UIImageView!
     @IBOutlet weak var lockRightArrow: UIImageView!
+    @IBOutlet weak var lockStatusImage: UIImageView!
     
     @IBOutlet weak var controlView: UIView!
     
@@ -107,9 +108,10 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
     private func lock() {
         isLocked = true
         
-        self.mainScrollView.isUserInteractionEnabled = false
-        
         self.lockText.text = "Slide left to unlock"
+        self.lockStatusImage.image = UIImage(named: "Locked Status")
+        
+        self.mainScrollView.isUserInteractionEnabled = false
         
         switch UIApplication.shared.statusBarOrientation{
             case .portrait:
@@ -138,9 +140,10 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
     private func unlock() {
         isLocked = false
         
-        self.mainScrollView.isUserInteractionEnabled = true
-        
         self.lockText.text = "Slide right to lock"
+        self.lockStatusImage.image = UIImage(named: "Unlocked Status")
+        
+        self.mainScrollView.isUserInteractionEnabled = true
         
         AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
         
@@ -185,14 +188,6 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         
         dismiss(animated: true, completion: {
             //animate background color change for better drawing
-            /*
-            UIView.animate(withDuration: 1, animations: {
-                self.backgroundImageView.alpha = 0.0
-            }, completion: { _ in
-                self.backgroundImageView.isHidden = true
-            })
-            */
-            
             let toImage = UIImage(named:"Grey Background")
             UIView.transition(with: self.backgroundImageView,
                               duration: 0.5,

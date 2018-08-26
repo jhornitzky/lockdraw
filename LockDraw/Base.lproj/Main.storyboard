@@ -25,6 +25,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Unlocked Status" translatesAutoresizingMaskIntoConstraints="NO" id="y1h-gh-Ybz">
+                                <rect key="frame" x="180" y="5" width="12" height="12"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" maximumZoomScale="10" translatesAutoresizingMaskIntoConstraints="NO" id="Rtk-Dg-SaK">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
@@ -96,6 +100,7 @@
                         <outlet property="controlView" destination="BkG-0w-4F7" id="ORq-K7-lS6"/>
                         <outlet property="lockLeftArrow" destination="C4h-qX-t3q" id="dgV-xK-uXK"/>
                         <outlet property="lockRightArrow" destination="hX3-iU-27b" id="Cba-hI-qDg"/>
+                        <outlet property="lockStatusImage" destination="y1h-gh-Ybz" id="u2h-7Q-BZF"/>
                         <outlet property="lockText" destination="g1I-sf-R32" id="Pr3-kg-URl"/>
                         <outlet property="lockView" destination="4i4-vX-7ev" id="oQS-Wo-Lbn"/>
                         <outlet property="mainImageView" destination="9G9-nP-YGX" id="jne-Qg-Gmm"/>
@@ -111,5 +116,6 @@
         <image name="Background" width="375" height="812"/>
         <image name="Left Arrow" width="11" height="19"/>
         <image name="Right Arrow" width="11" height="19"/>
+        <image name="Unlocked Status" width="12" height="12"/>
     </resources>
 </document>
