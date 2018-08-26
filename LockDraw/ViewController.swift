@@ -168,7 +168,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
     
     //Image picker & filtering
     @IBAction func changeImage(_ sender: Any) {
-        imagePicker.allowsEditing = false
+        imagePicker.allowsEditing = true
         imagePicker.sourceType = .photoLibrary
         
         present(imagePicker, animated: true, completion: nil)
