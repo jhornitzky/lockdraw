@@ -14,6 +14,7 @@
 		14807CE91F138C8A00AC4298 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14807CE81F138C8A00AC4298 /* Assets.xcassets */; };
 		14807CEC1F138C8A00AC4298 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14807CEA1F138C8A00AC4298 /* LaunchScreen.storyboard */; };
 		149533E6213209E9006874D0 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149533E5213209E9006874D0 /* AppUtility.swift */; };
+		149533E8213248BF006874D0 /* UIImageView+ContentClipping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149533E7213248BF006874D0 /* UIImageView+ContentClipping.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		14807CEB1F138C8A00AC4298 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14807CED1F138C8A00AC4298 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		149533E5213209E9006874D0 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
+		149533E7213248BF006874D0 /* UIImageView+ContentClipping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+ContentClipping.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				14807CDE1F138C8A00AC4298 /* AppDelegate.swift */,
 				14807CE01F138C8A00AC4298 /* ViewController.swift */,
 				149533E5213209E9006874D0 /* AppUtility.swift */,
+				149533E7213248BF006874D0 /* UIImageView+ContentClipping.swift */,
 				14807CE21F138C8A00AC4298 /* Main.storyboard */,
 				14807CE81F138C8A00AC4298 /* Assets.xcassets */,
 				14807CEA1F138C8A00AC4298 /* LaunchScreen.storyboard */,
@@ -146,6 +149,7 @@
 				149533E6213209E9006874D0 /* AppUtility.swift in Sources */,
 				14807CE71F138C8A00AC4298 /* LockDraw.xcdatamodeld in Sources */,
 				14807CE11F138C8A00AC4298 /* ViewController.swift in Sources */,
+				149533E8213248BF006874D0 /* UIImageView+ContentClipping.swift in Sources */,
 				14807CDF1F138C8A00AC4298 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

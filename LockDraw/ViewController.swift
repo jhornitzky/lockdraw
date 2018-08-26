@@ -13,9 +13,12 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var backgroundImageView: UIImageView!
+    
     @IBOutlet weak var lockView: UIView!
     @IBOutlet weak var lockText: UILabel!
-    @IBOutlet weak var lockImage: UIImageView!
+    @IBOutlet weak var lockLeftArrow: UIImageView!
+    @IBOutlet weak var lockRightArrow: UIImageView!
+    
     @IBOutlet weak var controlView: UIView!
     
     let imagePicker = UIImagePickerController()
@@ -33,19 +36,23 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         imagePicker.delegate = self
         
         //set bar radius and effects
+        self.lockView.backgroundColor = UIColor(white: 0.0, alpha: 0.0)
         self.lockView.layer.cornerRadius = 10.0
-        /*let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
+        blurEffectView.frame = self.lockView.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.lockView.addSubview(blurEffectView)*/
+        self.lockView.addSubview(blurEffectView)
+        self.lockView.sendSubview(toBack: blurEffectView)
         
+        self.controlView.backgroundColor = UIColor(white: 0.0, alpha: 0.0)
         self.controlView.layer.cornerRadius = 10.0
-        /*let blurEffect2 = UIBlurEffect(style: UIBlurEffectStyle.light)
+        let blurEffect2 = UIBlurEffect(style: UIBlurEffectStyle.light)
         let blurEffectView2 = UIVisualEffectView(effect: blurEffect2)
-        blurEffectView2.frame = view.bounds
+        blurEffectView2.frame = self.lockView.bounds
         blurEffectView2.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.controlView.addSubview(blurEffectView2)*/
+        self.controlView.addSubview(blurEffectView2)
+        self.controlView.sendSubview(toBack: blurEffectView2)
         
         //setup slide area lock
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
@@ -82,11 +89,9 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
     //slide lock/unlock
     func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
         if gesture.direction == UISwipeGestureRecognizerDirection.right && !isLocked {
-            print("Locking")
             lock();
         }
         else if gesture.direction == UISwipeGestureRecognizerDirection.left && isLocked {
-            print("Unlocking")
             unlock();
         }
         /*
@@ -100,9 +105,11 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
     }
     
     private func lock() {
+        isLocked = true
+        
         self.mainScrollView.isUserInteractionEnabled = false
-        self.controlView.isHidden = true
-        self.lockText.text = "Swipe left to unlock"
+        
+        self.lockText.text = "Slide left to unlock"
         
         switch UIApplication.shared.statusBarOrientation{
             case .portrait:
@@ -117,16 +124,35 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
                 AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait)
         }
         
-        isLocked = true
+        self.lockLeftArrow.isHidden = false
+        UIView.animate(withDuration: 0.5, animations: {
+            self.controlView.alpha = 0.0
+            self.lockLeftArrow.alpha = 1.0
+            self.lockRightArrow.alpha = 0.0
+        }, completion: { _ in
+            self.controlView.isHidden = true
+            self.lockRightArrow.isHidden = true
+        })
     }
     
     private func unlock() {
+        isLocked = false
+        
         self.mainScrollView.isUserInteractionEnabled = true
-        self.controlView.isHidden = false
-        self.lockText.text = "Swipe right to lock"
+        
+        self.lockText.text = "Slide right to lock"
+        
         AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
         
-        isLocked = false
+        self.controlView.isHidden = false
+        self.lockRightArrow.isHidden = false
+        UIView.animate(withDuration: 0.5, animations: {
+            self.controlView.alpha = 1.0
+            self.lockLeftArrow.alpha = 0.0
+            self.lockRightArrow.alpha = 1.0
+        }, completion: { _ in
+            self.lockLeftArrow.isHidden = true
+        })
     }
     
     //Image picker
@@ -139,12 +165,32 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            //set the image
             self.mainImageView.contentMode = .scaleAspectFit
             self.mainImageView.image = pickedImage
-            self.backgroundImageView.isHidden = true
+            
+            /*
+            //resize and position image view in center of screen
+            self.mainImageView.removeConstraints(self.mainImageView.constraints)
+            let newRect = self.mainImageView.contentClippingRect
+            self.mainImageView.frame = newRect
+            self.mainImageView.center = self.view.center
+            */
+            
+            //add a background+border to the image
+            self.mainImageView.backgroundColor = UIColor(red:255/255, green:255/255, blue:255/255, alpha: 0.5)
+            self.mainImageView.layer.borderWidth = 2
+            self.mainImageView.layer.borderColor = UIColor(red:255/255, green:255/255, blue:255/255, alpha: 0.5).cgColor
         }
         
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: {
+            //animate background color change for better drawing
+            UIView.animate(withDuration: 1, animations: {
+                self.backgroundImageView.alpha = 0.0
+            }, completion: { _ in
+                self.backgroundImageView.isHidden = true
+            })
+        })
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
