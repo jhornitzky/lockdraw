@@ -107,23 +107,34 @@ Lock and start drawing!</string>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BkG-0w-4F7">
-                                <rect key="frame" x="53" y="598" width="268" height="49"/>
+                            <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BkG-0w-4F7">
+                                <rect key="frame" x="16" y="598" width="343" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Hi-Il-8UT">
-                                        <rect key="frame" x="8" y="8" width="122" height="34"/>
+                                        <rect key="frame" x="121" y="7" width="102" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.6511148174157303" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Change Image">
+                                        <state key="normal" title="Pick Photo">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="changeImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="03Z-ed-zU8"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tzn-YI-cFc">
+                                        <rect key="frame" x="8" y="7" width="100" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.65111481739999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Take Photo">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="j47-V0-foC"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upf-Gk-pze">
-                                        <rect key="frame" x="139" y="8" width="121" height="34"/>
+                                        <rect key="frame" x="235" y="7" width="100" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.6511148174157303" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Apply Filter">
@@ -158,6 +169,7 @@ Lock and start drawing!</string>
                         <outlet property="lockView" destination="4i4-vX-7ev" id="oQS-Wo-Lbn"/>
                         <outlet property="mainImageView" destination="9G9-nP-YGX" id="jne-Qg-Gmm"/>
                         <outlet property="mainScrollView" destination="Rtk-Dg-SaK" id="hon-Pj-YyP"/>
+                        <outlet property="takePhotoButton" destination="tzn-YI-cFc" id="8ZB-Bw-KDa"/>
                         <outlet property="welcomeView" destination="syy-KZ-UBX" id="3yL-3N-53U"/>
                     </connections>
                 </viewController>

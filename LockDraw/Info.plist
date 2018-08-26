@@ -45,5 +45,7 @@
 	<true/>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSCameraUsageDescription</key>
+	<string>Used to take photos for drawing</string>
 </dict>
 </plist>

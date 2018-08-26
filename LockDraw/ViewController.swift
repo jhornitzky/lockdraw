@@ -21,6 +21,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
     @IBOutlet weak var lockStatusImage: UIImageView!
     
     @IBOutlet weak var controlView: UIView!
+    @IBOutlet weak var takePhotoButton: UIButton!
     @IBOutlet weak var changeImageButton: UIButton!
     @IBOutlet weak var applyFilterButton: UIButton!
     
@@ -57,13 +58,15 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         self.controlView.layer.cornerRadius = 10.0
         let blurEffect2 = UIBlurEffect(style: UIBlurEffectStyle.light)
         let blurEffectView2 = UIVisualEffectView(effect: blurEffect2)
-        blurEffectView2.frame = self.lockView.bounds
+        blurEffectView2.frame = self.controlView.bounds
         blurEffectView2.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.controlView.addSubview(blurEffectView2)
         self.controlView.sendSubview(toBack: blurEffectView2)
         
+        self.takePhotoButton.layer.cornerRadius = 10.0
         self.changeImageButton.layer.cornerRadius = 10.0
         self.applyFilterButton.layer.cornerRadius = 10.0
+        
         self.welcomeView.layer.cornerRadius = 10.0
         
         //setup slide area lock
@@ -167,6 +170,12 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
     
     
     //Image picker & filtering
+    @IBAction func takePhoto(_ sender: UIButton) {
+        imagePicker.allowsEditing = true
+        imagePicker.sourceType = .camera
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
     @IBAction func changeImage(_ sender: Any) {
         imagePicker.allowsEditing = true
         imagePicker.sourceType = .photoLibrary
@@ -188,20 +197,38 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         self.present(action, animated: true, completion: nil)
     }
     
+    @IBAction func save(_ sender: AnyObject) {
+        UIImageWriteToSavedPhotosAlbum(self.pickedImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
+    
     private func processFilter() {
         switch self.currentFilter {
-            case "Original":
-                self.mainImageView.image = self.pickedImage
-            case "Grayscale":
-                let ciImage = CIImage(image: self.pickedImage)!
-                let blackAndWhiteCiImage = ciImage.applyingFilter("CIColorControls", withInputParameters: ["inputSaturation": 0])
-                self.mainImageView.image = UIImage(ciImage: blackAndWhiteCiImage)
-            case "B&W Contrast":
-                let ciImage = CIImage(image: self.pickedImage)!
-                let blackAndWhiteCiImage = ciImage.applyingFilter("CIColorControls", withInputParameters: ["inputSaturation": 0, "inputContrast": 3])
-                self.mainImageView.image = UIImage(ciImage: blackAndWhiteCiImage)
-            default:
-                return //do nothing, which should never happen
+        case "Original":
+            self.mainImageView.image = self.pickedImage
+        case "Grayscale":
+            let ciImage = CIImage(image: self.pickedImage)!
+            let blackAndWhiteCiImage = ciImage.applyingFilter("CIColorControls", withInputParameters: ["inputSaturation": 0])
+            self.mainImageView.image = UIImage(ciImage: blackAndWhiteCiImage)
+        case "B&W Contrast":
+            let ciImage = CIImage(image: self.pickedImage)!
+            let blackAndWhiteCiImage = ciImage.applyingFilter("CIColorControls", withInputParameters: ["inputSaturation": 0, "inputContrast": 3])
+            self.mainImageView.image = UIImage(ciImage: blackAndWhiteCiImage)
+        default:
+            return //do nothing, which should never happen
+        }
+    }
+    
+    //MARK: - Add image to Library
+    func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            // we got back an error!
+            let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
         }
     }
     
