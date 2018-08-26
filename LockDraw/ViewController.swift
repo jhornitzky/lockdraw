@@ -12,6 +12,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
     
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var mainImageView: UIImageView!
+    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var lockView: UIView!
     @IBOutlet weak var lockText: UILabel!
     @IBOutlet weak var lockImage: UIImageView!
@@ -30,6 +31,21 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         
         //setup image picker
         imagePicker.delegate = self
+        
+        //set bar radius and effects
+        self.lockView.layer.cornerRadius = 10.0
+        /*let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.lockView.addSubview(blurEffectView)*/
+        
+        self.controlView.layer.cornerRadius = 10.0
+        /*let blurEffect2 = UIBlurEffect(style: UIBlurEffectStyle.light)
+        let blurEffectView2 = UIVisualEffectView(effect: blurEffect2)
+        blurEffectView2.frame = view.bounds
+        blurEffectView2.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.controlView.addSubview(blurEffectView2)*/
         
         //setup slide area lock
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
@@ -125,6 +141,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             self.mainImageView.contentMode = .scaleAspectFit
             self.mainImageView.image = pickedImage
+            self.backgroundImageView.isHidden = true
         }
         
         dismiss(animated: true, completion: nil)
