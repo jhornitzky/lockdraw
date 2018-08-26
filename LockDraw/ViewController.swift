@@ -21,6 +21,10 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
     @IBOutlet weak var lockStatusImage: UIImageView!
     
     @IBOutlet weak var controlView: UIView!
+    @IBOutlet weak var changeImageButton: UIButton!
+    @IBOutlet weak var applyFilterButton: UIButton!
+    
+    @IBOutlet weak var welcomeView: UIView!
     
     let imagePicker = UIImagePickerController()
     
@@ -54,6 +58,10 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         blurEffectView2.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.controlView.addSubview(blurEffectView2)
         self.controlView.sendSubview(toBack: blurEffectView2)
+        
+        self.changeImageButton.layer.cornerRadius = 10.0
+        self.applyFilterButton.layer.cornerRadius = 10.0
+        self.welcomeView.layer.cornerRadius = 10.0
         
         //setup slide area lock
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
@@ -175,28 +183,21 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
             //show the scrollview
             self.mainScrollView.isHidden = false
             
-            /*
-            //resize and position image view in center of screen
-            self.mainImageView.removeConstraints(self.mainImageView.constraints)
-            let newRect = self.mainImageView.contentClippingRect
-            self.mainImageView.frame = newRect
-            self.mainImageView.center = self.view.center
-            */
-            
-            //add a background+border to the image
-            self.mainImageView.backgroundColor = UIColor(red:255/255, green:255/255, blue:255/255, alpha: 0.5)
+            //add a border to the image
             self.mainImageView.layer.borderWidth = 2
             self.mainImageView.layer.borderColor = UIColor(red:255/255, green:255/255, blue:255/255, alpha: 0.5).cgColor
+            
+            //remove welcome view
+            self.welcomeView.isHidden = true
         }
         
         dismiss(animated: true, completion: {
             //animate background color change for better drawing
-            let toImage = UIImage(named:"Grey Background")
-            UIView.transition(with: self.backgroundImageView,
-                              duration: 0.5,
-                              options: .transitionCrossDissolve,
-                              animations: { self.backgroundImageView.image = toImage },
-                              completion: nil)
+            UIView.animate(withDuration: 0.5, animations: {
+                self.backgroundImageView.alpha = 0.0
+            }, completion: { _ in
+                self.backgroundImageView.isHidden = true
+            })
         })
     }
     
