@@ -15,6 +15,7 @@
 		14807CEC1F138C8A00AC4298 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14807CEA1F138C8A00AC4298 /* LaunchScreen.storyboard */; };
 		149533E6213209E9006874D0 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149533E5213209E9006874D0 /* AppUtility.swift */; };
 		149533E8213248BF006874D0 /* UIImageView+ContentClipping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149533E7213248BF006874D0 /* UIImageView+ContentClipping.swift */; };
+		149533EA2132B9A9006874D0 /* UIAlertController+Ticks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149533E92132B9A9006874D0 /* UIAlertController+Ticks.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		14807CED1F138C8A00AC4298 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		149533E5213209E9006874D0 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		149533E7213248BF006874D0 /* UIImageView+ContentClipping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+ContentClipping.swift"; sourceTree = "<group>"; };
+		149533E92132B9A9006874D0 /* UIAlertController+Ticks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Ticks.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,12 +63,13 @@
 			isa = PBXGroup;
 			children = (
 				14807CDE1F138C8A00AC4298 /* AppDelegate.swift */,
-				14807CE01F138C8A00AC4298 /* ViewController.swift */,
 				149533E5213209E9006874D0 /* AppUtility.swift */,
+				14807CE01F138C8A00AC4298 /* ViewController.swift */,
 				149533E7213248BF006874D0 /* UIImageView+ContentClipping.swift */,
+				149533E92132B9A9006874D0 /* UIAlertController+Ticks.swift */,
 				14807CE21F138C8A00AC4298 /* Main.storyboard */,
-				14807CE81F138C8A00AC4298 /* Assets.xcassets */,
 				14807CEA1F138C8A00AC4298 /* LaunchScreen.storyboard */,
+				14807CE81F138C8A00AC4298 /* Assets.xcassets */,
 				14807CED1F138C8A00AC4298 /* Info.plist */,
 				14807CE51F138C8A00AC4298 /* LockDraw.xcdatamodeld */,
 			);
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				149533E6213209E9006874D0 /* AppUtility.swift in Sources */,
+				149533EA2132B9A9006874D0 /* UIAlertController+Ticks.swift in Sources */,
 				14807CE71F138C8A00AC4298 /* LockDraw.xcdatamodeld in Sources */,
 				14807CE11F138C8A00AC4298 /* ViewController.swift in Sources */,
 				149533E8213248BF006874D0 /* UIImageView+ContentClipping.swift in Sources */,

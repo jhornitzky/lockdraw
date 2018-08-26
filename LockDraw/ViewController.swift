@@ -29,6 +29,8 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
     let imagePicker = UIImagePickerController()
     
     var isLocked = false
+    var currentFilter = "Original"
+    var pickedImage = UIImage()
     
     override var prefersStatusBarHidden: Bool {
         return true
@@ -89,7 +91,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
     }
     
     
-    //image area
+    //scroll view + image view
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return self.mainImageView
     }
@@ -97,24 +99,16 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
     
     //slide lock/unlock
     func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
-        if gesture.direction == UISwipeGestureRecognizerDirection.right && !isLocked {
+        if gesture.direction == UISwipeGestureRecognizerDirection.right && !self.isLocked {
             lock();
         }
-        else if gesture.direction == UISwipeGestureRecognizerDirection.left && isLocked {
+        else if gesture.direction == UISwipeGestureRecognizerDirection.left && self.isLocked {
             unlock();
         }
-        /*
-        else if gesture.direction == UISwipeGestureRecognizerDirection.up {
-            print("Swipe Up")
-        }
-        else if gesture.direction == UISwipeGestureRecognizerDirection.down {
-            print("Swipe Down")
-        }
-         */
     }
     
     private func lock() {
-        isLocked = true
+        self.isLocked = true
         
         self.lockText.text = "Slide left to unlock"
         self.lockStatusImage.image = UIImage(named: "Locked Status")
@@ -146,7 +140,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
     }
     
     private func unlock() {
-        isLocked = false
+        self.isLocked = false
         
         self.lockText.text = "Slide right to lock"
         self.lockStatusImage.image = UIImage(named: "Unlocked Status")
@@ -166,7 +160,8 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         })
     }
     
-    //Image picker
+    
+    //Image picker & filtering
     @IBAction func changeImage(_ sender: Any) {
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary
@@ -174,31 +169,70 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         present(imagePicker, animated: true, completion: nil)
     }
     
+    @IBAction func applyFilter(_ sender: Any) {
+        let action = UIAlertController.actionSheetWithItems(
+            items: [("Original","Original"),("Black & White","Black & White")],
+            currentSelection: self.currentFilter,
+            action: { (value)  in
+                self.currentFilter = value
+                self.processFilter()
+            })
+        action.addAction(UIAlertAction.init(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        
+        //Present the controller
+        self.present(action, animated: true, completion: nil)
+    }
+    
+    private func processFilter() {
+        switch self.currentFilter {
+        case "Original":
+            self.mainImageView.image = self.pickedImage
+        case "Black & White":
+            let ciImage = CIImage(image: self.pickedImage)!
+            let blackAndWhiteCiImage = ciImage.applyingFilter("CIColorControls", withInputParameters: ["inputSaturation": 0, "inputContrast": 5])
+            self.mainImageView.image = UIImage(ciImage: blackAndWhiteCiImage)
+        default:
+            return //do nothing, which should never happen
+        }
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             //set the image
-            self.mainImageView.contentMode = .scaleAspectFit
-            self.mainImageView.image = pickedImage
+            self.pickedImage = pickedImage
             
-            //show the scrollview
-            self.mainScrollView.isHidden = false
+            //update image view
+            self.mainImageView.image = self.pickedImage
             
             //add a border to the image
             self.mainImageView.layer.borderWidth = 2
             self.mainImageView.layer.borderColor = UIColor(red:255/255, green:255/255, blue:255/255, alpha: 0.5).cgColor
             
+            //show the scrollview
+            self.mainScrollView.isHidden = false
             //remove welcome view
             self.welcomeView.isHidden = true
-        }
-        
-        dismiss(animated: true, completion: {
-            //animate background color change for better drawing
-            UIView.animate(withDuration: 0.5, animations: {
-                self.backgroundImageView.alpha = 0.0
-            }, completion: { _ in
-                self.backgroundImageView.isHidden = true
+            
+            //get the views ready
+            self.lockView.alpha = 0.0
+            self.controlView.alpha = 0.0
+            self.lockView.isHidden = false
+            self.controlView.isHidden = false
+            
+            //dismiss modal and trigger control animations
+            dismiss(animated: true, completion: {
+                //animate background color change for better drawing
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.backgroundImageView.alpha = 0.0
+                    self.lockView.alpha = 1.0
+                    self.controlView.alpha = 1.0
+                }, completion: { _ in
+                    self.backgroundImageView.isHidden = true
+                })
             })
-        })
+        } else {
+            dismiss(animated: true, completion: nil) //this should never really happen, but its hear just in case
+        }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
