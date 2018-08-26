@@ -185,11 +185,20 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         
         dismiss(animated: true, completion: {
             //animate background color change for better drawing
+            /*
             UIView.animate(withDuration: 1, animations: {
                 self.backgroundImageView.alpha = 0.0
             }, completion: { _ in
                 self.backgroundImageView.isHidden = true
             })
+            */
+            
+            let toImage = UIImage(named:"Grey Background")
+            UIView.transition(with: self.backgroundImageView,
+                              duration: 0.5,
+                              options: .transitionCrossDissolve,
+                              animations: { self.backgroundImageView.image = toImage },
+                              completion: nil)
         })
     }
     

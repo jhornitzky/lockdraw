@@ -25,6 +25,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Glyph" translatesAutoresizingMaskIntoConstraints="NO" id="Kby-50-JKD">
+                                <rect key="frame" x="145" y="293" width="85" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -37,5 +41,6 @@
     </scenes>
     <resources>
         <image name="Background" width="375" height="812"/>
+        <image name="Glyph" width="142" height="126"/>
     </resources>
 </document>
