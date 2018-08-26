@@ -41,6 +41,6 @@
     </scenes>
     <resources>
         <image name="Background" width="375" height="812"/>
-        <image name="Glyph" width="142" height="126"/>
+        <image name="Glyph" width="164" height="148"/>
     </resources>
 </document>
