@@ -171,9 +171,15 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
     
     //Image picker & filtering
     @IBAction func takePhoto(_ sender: UIButton) {
-        imagePicker.allowsEditing = true
-        imagePicker.sourceType = .camera
-        present(imagePicker, animated: true, completion: nil)
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = .camera
+            present(imagePicker, animated: true, completion: nil)
+        } else {
+            let ac = UIAlertController(title: "Camera not available", message: "The camera is not available on your device.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        }
     }
     
     @IBAction func changeImage(_ sender: Any) {
@@ -195,10 +201,6 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         
         //Present the controller
         self.present(action, animated: true, completion: nil)
-    }
-    
-    @IBAction func save(_ sender: AnyObject) {
-        UIImageWriteToSavedPhotosAlbum(self.pickedImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
     }
     
     private func processFilter() {
@@ -226,7 +228,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
             ac.addAction(UIAlertAction(title: "OK", style: .default))
             present(ac, animated: true)
         } else {
-            let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
+            let ac = UIAlertController(title: "Saved!", message: "Your image has been saved to your photos.", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .default))
             present(ac, animated: true)
         }
@@ -236,6 +238,11 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             //set the image
             self.pickedImage = pickedImage
+            
+            //save the image if it came from the camera
+            if imagePicker.sourceType == .camera {
+                UIImageWriteToSavedPhotosAlbum(self.pickedImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+            }
             
             //update image view
             self.mainImageView.image = self.pickedImage
