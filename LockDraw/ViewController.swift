@@ -256,7 +256,6 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
             self.controlView.alpha = 0.0
             self.lockView.isHidden = false
             self.controlView.isHidden = false
-            self.backgroundImageView.isHidden = true
             
             //dismiss modal and trigger control animations
             dismiss(animated: true, completion: {
