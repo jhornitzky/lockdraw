@@ -47,5 +47,7 @@
 	<false/>
 	<key>NSCameraUsageDescription</key>
 	<string>Used to take photos for drawing</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Used to save images taken with the camera</string>
 </dict>
 </plist>
