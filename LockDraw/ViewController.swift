@@ -246,24 +246,24 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
             
             //show the scrollview
             self.mainScrollView.isHidden = false
-            //remove welcome view
+            
+            //remove welcome view + background
             self.welcomeView.isHidden = true
+            self.backgroundImageView.isHidden = true
             
             //get the views ready
             self.lockView.alpha = 0.0
             self.controlView.alpha = 0.0
             self.lockView.isHidden = false
             self.controlView.isHidden = false
+            self.backgroundImageView.isHidden = true
             
             //dismiss modal and trigger control animations
             dismiss(animated: true, completion: {
                 //animate background color change for better drawing
                 UIView.animate(withDuration: 0.5, animations: {
-                    self.backgroundImageView.alpha = 0.0
                     self.lockView.alpha = 1.0
                     self.controlView.alpha = 1.0
-                }, completion: { _ in
-                    self.backgroundImageView.isHidden = true
                 })
             })
         } else {
