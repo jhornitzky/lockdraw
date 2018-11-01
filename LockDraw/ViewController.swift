@@ -234,7 +234,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UIImagePickerContr
         }
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             //set the image
             self.pickedImage = pickedImage
